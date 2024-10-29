@@ -1,5 +1,6 @@
 {
     "name": "experro/connect",
+    "version": "1.0.0",
     "description": "Magento2 Experro Connect",
     "license": "proprietary",
     "authors": [
