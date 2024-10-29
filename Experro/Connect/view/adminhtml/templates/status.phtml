@@ -1,0 +1,176 @@
+<img src="<?php echo $this->getIconUrl(); ?>" alt="icon" class="page-title-icon" />
+<h1 class="page-title"><?php echo $this->getPageTitle(); ?></h1>
+<?php
+$connectionData = $block->getStatusDetails();
+?>
+
+<div class="container" id="connection-info">
+    <?php if (count($connectionData) > 0): ?>
+        <!-- If connection data is available, show the connection status table -->
+        <div id="completion-info">
+            <div class="error" id="saving-error"></div>
+            <h1>Connection Completed!</h1>
+            <div id="connection-status-container">
+                <table id="connection-status-table">
+                    <thead>
+                        <tr>
+                            <th>Connection Name</th>
+                            <th>Channel</th>
+                            <th>Environment</th>
+                            <th>Languages</th>
+                            <th>Status</th>
+                            <th>Created On</th>
+                            <th>View Details</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($connectionData as $connection): ?>
+                            <tr>
+                                <td><?= $connection['connection_name'] ?></td>
+                                <td><?= $connection['channel_name'] ?></td>
+                                <td><?= $connection['environment_id'] ?></td>
+                                <td><?= $connection['languages'] ?></td>
+                                <td data-status="<?= $connection['status'] ?>"> <span><?= $connection['status'] ?></span></td>
+                                <td><?= $connection['created_at'] ?></td>
+                                <td><a href="#" data-connection-id="<?= $connection['id'] ?>" class="view-details"></a></td>
+                                <td><a href="#" data-connection-id="<?= $connection['id'] ?>" class="delete"></a></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="button-container">
+                <button class="btn btn-next" id="system-status">System Status</button>
+                <button class="btn btn-next" id="connect-experro">Connect to Experro</button>
+            </div>
+        </div>
+    <?php else: ?>
+        <!-- If no connection data, show the instructions -->
+        <div class="instructions">
+            <div class="icons">
+                <img src="<?php echo $this->getMagentoIcon(); ?>" alt="icon" class="magento-icon" />
+                <img src="<?php echo $this->getArrowIcon(); ?>" alt="icon" class="arrow-icon" />
+                <img src="<?php echo $this->getExperroIcon(); ?>" alt="icon" class="experro-icon" />
+            </div>
+             <h1>Connect your Magento store with Experro</h1>
+            <p>To integrate your Magento store, follow these steps:</p>
+            <ol>
+                <li>Click the "Connect to Experro" button below and enter your Experro token.</li>
+                <li>Next, you will receive the OAuth token details, which you'll need to enter in the OAuth step in Experro setup to connect your store.</li>
+            </ol>
+        </div>
+        <button class="btn btn-next" id="connect-experro">Connect to Experro</button>
+    <?php endif; ?>
+</div>
+
+<div class="container" id="connection-form" style="display: none;">
+    <div class="stepper">
+        <div class="step active">Store Details</div>
+        <div class="step">Token Details</div>
+        <div class="step">Completed</div>
+    </div>
+    
+    <!-- Buttons at the top right corner -->
+    <div class="button-container">
+        <button type="button" class="btn-cancel" id="cancel">Cancel</button>
+        <button type="button" class="btn-next" id="next">Next</button>
+    </div>
+
+    <form id="experro-connection-form">
+        <h1 id="form-title">Store Details</h1>
+
+        <div id="step-1">
+            <label for="connection-name">Connection Name:</label>
+            <input type="text" id="connection-name" name="connection-name" required>
+            <div class="error" id="error-connection-name"></div>
+
+            <label for="experro-token">Enter your Experro token below to connect your store.</label>
+            <input type="text" id="experro-token" name="experro-token" required>
+            <div class="error" id="error-experro-token"></div>
+        </div>
+
+        <div id="step-2" class="hidden">
+            <label for="client-id">Client ID</label>
+            <input type="text" id="client-id" name="client-id" required>
+            <div class="error" id="error-client-id"></div>
+
+            <label for="client-secret">Client Secret</label>
+            <input type="text" id="client-secret" name="client-secret" required>
+            <div class="error" id="error-client-secret"></div>
+            
+            <label for="access-token">Access Token</label>
+            <input type="text" id="access-token" name="access-token" required>
+            <div class="error" id="error-access-token"></div>
+
+            <label for="access-token-secret">Access Token Secret</label>
+            <input type="text" id="access-token-secret" name="access-token-secret" required>
+            <div class="error" id="error-access-token-secret"></div>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+
+<!-- Popup Modal -->
+<div id="details-popup" class="popup-overlay" style="display:none;">
+    <div class="popup-content">
+        <h2>Connection Details</h2>
+        <table>
+            <tr><td><strong>Connection Name</strong></td><td id="popup-connection-name"></td></tr>
+            <tr><td><strong>Experro Token</strong></td><td id="popup-experro-token"></td></tr>
+            <tr><td><strong>Client ID</strong></td><td id="popup-client-id"></td></tr>
+            <tr><td><strong>Client Secret</strong></td><td id="popup-client-secret"></td></tr>
+            <tr><td><strong>Access Token</strong></td><td id="popup-access-token"></td></tr>
+            <tr><td><strong>Access Token Secret</strong></td><td id="popup-access-token-secret"></td></tr>
+        </table>
+        <button id="close-popup">Close</button>
+    </div>
+</div>
+
+<!-- Style for Popup (Optional, add your own styles) -->
+<style>
+    .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .popup-content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        width: 800px;
+        text-align: left;
+    }
+
+    .popup-content table {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .popup-content td {
+        padding: 5px;
+    }
+</style>
+<script type="text/javascript">
+    require(['jquery'], function($) {
+        $(document).ready(function() {
+            var adminUrl = "<?php echo $block->getAdminUrl(); ?>"; // Get the generated URL
+            
+            $('#system-status').on('click', function() {
+                window.open(adminUrl, '_blank'); // Open in new tab
+            });
+        });
+    });
+</script>

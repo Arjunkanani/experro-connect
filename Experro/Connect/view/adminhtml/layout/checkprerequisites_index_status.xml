@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Experro_Connect::css/status.css"/>
+        <css src="Experro_Connect::js/status.js"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Experro\Connect\Block\Adminhtml\Status" name="cron_status" template="Experro_Connect::status.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

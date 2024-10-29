@@ -1,0 +1,29 @@
+<!--
+/**
+ * Experro
+ * Copyright (C) 2024 Experro <support@experro.com>
+ *
+ * @category Experro
+ * @package Experro_ProductsApi
+ * @copyright Copyright (c) 2024 Experro (http://www.experro.com/)
+ * @author Experro <support@experro.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Magento\Catalog\Api\Data\ProductInterface">
+        <attribute code="default_quantity" type="int"/>
+        <attribute code="saleable_quantity" type="int"/>
+        <attribute code="stock_status" type="string"/>
+        <attribute code="notify_stock_qty" type="int"/>
+        <attribute code="special_price" type="string"/>
+        <attribute code="user_defined_product_attribute" type="Experro\Connect\Api\Data\UserdefinedProductAttributeInterface[]"/>
+    </extension_attributes>
+    <extension_attributes for="Magento\Quote\Api\Data\CartItemInterface">
+      <attribute code="image" type="string" />
+      <attribute code="url" type="string" />
+      <attribute code="id" type="int" />
+      <attribute code="variant_id" type="int" />
+      <attribute code="options" type="Experro\Connect\Api\Data\UserdefinedProductAttributeInterface[]" />
+      <attribute code="attributes_info" type="Experro\Connect\Api\Data\UserdefinedProductAttributeInterface[]" />
+    </extension_attributes>
+</config>

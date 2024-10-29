@@ -1,0 +1,42 @@
+<table class="data-grid" cellspacing="0" cellpadding="5" border="1">
+    <thead>
+        <tr>
+            <th>Check</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>CRON Status</td>
+            <td class="<?php echo $block->getCronStatus()['class']; ?>">
+                <?php echo $block->getCronStatus()['message']; ?>
+            </td>
+        </tr>
+        <tr>
+            <td>PHP Version</td>
+            <td class="<?php echo $block->getPhpVersion()['class']; ?>">
+                <?php echo $block->getPhpVersion()['message']; ?>
+            </td>
+        </tr>
+        <tr>
+            <td>PHP Extensions</td>
+            <td class="<?php echo $block->getPhpExtensions()['class']; ?>">
+                <?php echo $block->getPhpExtensions()['message']; ?>
+                <br>
+                <?php echo $block->getPhpExtensions()['installed']; ?>
+            </td>
+        </tr>
+        <tr>
+            <td>Directory Permissions</td>
+            <td class="<?php echo $block->getDirectoryPermissions()['class']; ?>">
+                <?php echo $block->getDirectoryPermissions()['message']; ?>
+            </td>
+        </tr>
+        <tr>
+            <td>Database Connection</td>
+            <td class="<?php echo $block->getDatabaseConnectionStatus()['class']; ?>">
+                <?php echo $block->getDatabaseConnectionStatus()['message']; ?>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="controller_action_catalog_product_save_entity_after">
+        <observer name="Experro_Connect_Product_Save_After" instance="Experro\Connect\Observer\ProductSaveAfter" />
+    </event>
+    <event name="adminhtml_customer_save_after">
+        <observer name="Experro_Connect_Customer_Admin_Edit" instance="Experro\Connect\Observer\EditCustomer"/>
+    </event>
+    <event name="catalog_product_import_bunch_save_after">
+        <observer name="Experro_Connect_Product_Bulk_Update" instance="Experro\Connect\Observer\ProductBulkUpdate"/>
+    </event>
+    <event name="sales_order_place_after">
+        <observer name="Experro_Connect_Order_Created" instance="Experro\Connect\Observer\OrderCreated" />
+    </event>
+    <event name="catalog_category_save_after">
+        <observer name="Experro_Connect_Category_Updated" instance="Experro\Connect\Observer\CategoryUpdated" />
+    </event>
+    <event name="sales_order_item_save_after">
+        <observer name="Experro_Connect_Inventory_Updated" instance="Experro\Connect\Observer\InventoryUpdated" />
+    </event>
+    <event name="catalog_product_delete_after">
+        <observer name="Experro_Connect_Product_Delete" instance="Experro\Connect\Observer\DeleteProduct" />
+    </event>
+    <event name="catalog_category_delete_after">
+        <observer name="Experro_Connect_Category_Delete" instance="Experro\Connect\Observer\DeleteCategory" />
+    </event>
+    <event name="customer_delete_after">
+        <observer name="Experro_Connect_Customer_Delete" instance="Experro\Connect\Observer\DeleteCustomer" />
+    </event>
+    <event name="catalog_product_save_before">
+        <observer name="vendor_productlogger_observer" instance="Experro\Connect\Observer\ProductSaveBefore" />
+    </event>
+</config>

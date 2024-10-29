@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Experro\Connect\Api\GetAllProductDetailsInterface" type="Experro\Connect\Model\Api\GetAllProductDetails"/>
+    <type name="Experro\Connect\Api\GetAllProductDetailsInterface">
+        <plugin name="modify_product_data" type="Experro\Connect\Plugin\AdditionalProductData"/>
+    </type>
+    <type name="Magento\Quote\Api\CartRepositoryInterface">
+        <plugin name="add_more_info" type="Experro\Connect\Plugin\QuotePlugin" sortOrder="10" />
+    </type>
+    <preference for="Experro\Connect\Api\VerifyConnectionFromExperroInterface" type="Experro\Connect\Model\Api\VerifyConnectionFromExperro"/>
+    <preference for="Experro\Connect\Api\DeleteConnectionInterface" type="Experro\Connect\Model\Api\DeleteConnection"/>
+    <preference for="Experro\Connect\Api\UpdateStoreCodeFromExperroInterface" type="Experro\Connect\Model\Api\UpdateStoreCodeFromExperro"/>
+
+</config>

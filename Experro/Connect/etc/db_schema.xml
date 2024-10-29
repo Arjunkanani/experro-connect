@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+    <table name="experro_connect_attempt" resource="default" engine="innodb" comment="Experro Connect Attempt Table">
+        <column xsi:type="int" name="id" nullable="false" identity="true" unsigned="true" comment="ID" />
+        <column xsi:type="int" name="related_id" nullable="false" unsigned="true" comment="Related ID" />
+        <column xsi:type="varchar" name="type" nullable="false" length="255" comment="Type" />
+        <column xsi:type="int" name="attempt_no" nullable="false" unsigned="true" comment="Attempt Number" />
+        <column xsi:type="varchar" name="store_code" nullable="false" length="255" comment="Store Code" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+    <table name="experro_connect_status" resource="default" engine="innodb" comment="Experro Connect Status">
+        <column xsi:type="int" name="id" nullable="false" identity="true" unsigned="true" comment="ID"/>
+        <column xsi:type="varchar" name="tenant_id" nullable="true" length="100" comment="Tenant ID"/>
+        <column xsi:type="varchar" name="workspace_id" nullable="true" length="100" comment="Workspace ID"/>
+        <column xsi:type="varchar" name="environment_id" nullable="true" length="100" comment="Environement ID"/>
+        <column xsi:type="varchar" name="channel_name" nullable="true" length="100" comment="Channel Name"/>
+        <column xsi:type="varchar" name="languages" nullable="true" length="100" comment="Languages"/>
+        <column xsi:type="varchar" name="jwt_secret" nullable="true" length="100" comment="Jwt Secret"/>
+        <column xsi:type="varchar" name="connection_name" nullable="true" length="100" comment="Connection Name"/>
+        <column xsi:type="varchar" name="experro_token" nullable="true" length="100" comment="Experro Token"/>
+        <column xsi:type="varchar" name="client_id" nullable="true" length="100" comment="Client ID"/>
+        <column xsi:type="varchar" name="client_secret" nullable="true" length="100" comment="Client Secret"/>
+        <column xsi:type="varchar" name="access_token" nullable="true" length="100" comment="Access Token"/>
+        <column xsi:type="varchar" name="access_token_secret" nullable="true" length="100" comment="Access Token Secret"/>
+        <column xsi:type="varchar" name="experro_store_hash" nullable="true" length="100" comment="Experro Store Hash"/>
+        <column xsi:type="varchar" name="status" nullable="true" length="100" comment="Status"/>
+        <column xsi:type="varchar" name="store_code" nullable="true" length="100" comment="Store Code"/>
+        <column xsi:type="varchar" name="language_ids" nullable="true" length="100" comment="Language Ids"/>
+        <column xsi:type="varchar" name="channel_ids" nullable="true" length="100" comment="Channel Ids"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+
+</schema>

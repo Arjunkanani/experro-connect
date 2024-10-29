@@ -1,0 +1,21 @@
+{
+    "name": "experro/connect",
+    "description": "Magento2 Experro Connect",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Experro",
+            "email": "info@mage2gen.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Experro\\Connect\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Menu/etc/menu.xsd">
+    <menu>
+        <add id="Experro_Connect::menu" title="Experro Connect" module="Experro_Connect" sortOrder="9999" resource="Magento_Backend::content"/>
+        <add id="Experro_Connect::status"
+             title="Experro Connect"
+             module="Experro_Connect"
+             sortOrder="10"
+             parent="Experro_Connect::menu"
+             action="checkprerequisites/index/status"
+             resource="Experro_Connect::connector"/>
+    </menu>
+</config>
